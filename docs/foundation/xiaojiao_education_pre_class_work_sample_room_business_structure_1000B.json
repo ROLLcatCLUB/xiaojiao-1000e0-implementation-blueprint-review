@@ -1,0 +1,169 @@
+{
+  "package_code": "1000_XIAOJIAO_TEACHER_JARVIS_WORKBENCH_PLANNING_PACKAGE",
+  "source_handoff": [
+    "docs/handoff/xiaojiao_teacher_jarvis_workbench_1000A_execution_handoff_20260612.md",
+    "docs/handoff/teacher_jarvis_workbench_planning_notes_1000_20260612.md"
+  ],
+  "product_identity": {
+    "zh": "小教智能体",
+    "en": "Xiaojiao Agent",
+    "definition": "统一小教智能体根据工作状态，主导渐进式工作台，把教师的工作对象以动态工作面板呈现出来，并通过工作动作持续推进教师完成课前专业工作。",
+    "teacher_facing_jarvis_allowed": false
+  },
+  "naming_policy": {
+    "new_teacher_facing_copy_uses": "小教",
+    "new_system_concepts_use": "Xiaojiao",
+    "legacy_internal_namespace": true,
+    "blind_full_repository_rename_allowed": false,
+    "allowlist_based_rename_only": true
+  },
+  "hard_boundaries": {
+    "runtime_change_allowed": false,
+    "ui_implementation_allowed": false,
+    "provider_call_allowed": false,
+    "database_write_allowed": false,
+    "memory_write_allowed": false,
+    "feishu_write_allowed": false,
+    "formal_export_allowed": false,
+    "classroom_student_runtime_allowed": false,
+    "full_repo_blind_rename_allowed": false
+  },
+  "weekly_work_graph_relation": {
+    "semester_weekly_calendar": "progress supporting table; answers which week teaches what",
+    "weekly_work_graph": "higher-level weekly work panel; organizes what to teach, prepare, evaluate, adjust, submit, handle, and carry over this week",
+    "weekly_work_graph_replaces_semester_weekly_calendar": false
+  },
+  "main_document_policy": {
+    "teaching_work_plan": "role-scoped main document",
+    "supporting_artifacts": [
+      "unit_lesson_allocation",
+      "semester_weekly_calendar",
+      "class_schedule_table",
+      "lesson_schedule_table"
+    ],
+    "supporting_artifacts_replace_main_document": false
+  },
+  "stage_code": "1000B_EDUCATION_PRE_CLASS_WORK_SAMPLE_ROOM_BUSINESS_STRUCTURE",
+  "stage_name": "Education Pre-Class Work Sample Room Business Structure",
+  "stage_type": "business_structure_contract_only",
+  "final_status_target": "XIAOJIAO_EDUCATION_PRE_CLASS_WORK_SAMPLE_ROOM_BUSINESS_STRUCTURE_PASS",
+  "purpose": "Define the education pre-class sample room business structure before any UI or runtime pilot.",
+  "stage_sections": {
+    "teacher_role_profile": {
+      "sample_role": "primary_art_teacher",
+      "role_scope": "first sample role only",
+      "system_wide_hardcode_allowed": false,
+      "profile_slots": [
+        "school_stage",
+        "grade_band",
+        "subject",
+        "textbook_catalog",
+        "semester_calendar",
+        "class_count",
+        "weekly_periods",
+        "classroom_resource_conditions",
+        "assessment_preference",
+        "school_activity_windows"
+      ]
+    },
+    "work_scopes": [
+      "semester_preparation",
+      "unit_preparation",
+      "weekly_preparation",
+      "daily_preparation",
+      "classroom_material_preparation",
+      "evaluation_preparation",
+      "issue_follow_up"
+    ],
+    "pre_class_artifact_map": {
+      "main_document": "teaching_work_plan",
+      "supporting_artifacts": [
+        "unit_lesson_allocation",
+        "semester_weekly_calendar",
+        "weekly_work_graph",
+        "today_work_items",
+        "lesson_design",
+        "learning_task_sheet",
+        "evaluation_rubric",
+        "resource_pack",
+        "classroom_preparation_package"
+      ]
+    },
+    "classroom_preparation_package_chain": [
+      "teacher_role_profile",
+      "semester_teaching_work_plan",
+      "unit_lesson_allocation",
+      "semester_weekly_calendar",
+      "weekly_work_graph",
+      "today_work_items",
+      "lesson_design",
+      "learning_task_sheet",
+      "evaluation_rubric",
+      "resource_pack",
+      "classroom_preparation_package"
+    ]
+  },
+  "validation_focus": [
+    "sample role is primary art teacher without system-wide hardcoding",
+    "teaching work plan remains the main document",
+    "supporting artifact graph is explicit",
+    "weekly work graph does not replace semester weekly calendar",
+    "classroom preparation package chain exists"
+  ],
+  "prohibited_patterns": [
+    "implement real UI",
+    "modify real frontend pages",
+    "connect runtime",
+    "call provider or model",
+    "write database",
+    "write memory",
+    "write Feishu",
+    "create formal export",
+    "connect classroom student runtime",
+    "modify old sealed stages",
+    "blind full-repository rename",
+    "globally replace Xiaobei with Xiaojiao",
+    "put Jarvis into teacher-facing product copy",
+    "make Dynamic Work Panel a fixed dead card",
+    "split Xiaojiao into multiple business agents",
+    "let chat history dominate the workspace",
+    "replace semester weekly calendar with weekly work graph",
+    "let supporting tables replace the teaching work plan main document",
+    "hardcode art-teacher logic as a system-wide rule",
+    "turn sample room into classroom execution runtime",
+    "expose audit flags in teacher-facing primary copy",
+    "skip validator before next stage"
+  ],
+  "future_milestones": [
+    "1000B_EDUCATION_PRE_CLASS_WORK_SAMPLE_ROOM_BUSINESS_STRUCTURE",
+    "1000C_DYNAMIC_WORK_PANEL_CONTRACT",
+    "1000D_AGENT_ACTION_POLICY_AND_WORK_STATE_CONTRACT",
+    "1000E_ART_TEACHER_PRE_CLASS_WORKBENCH_PILOT"
+  ],
+  "next_stage": "1000C_DYNAMIC_WORK_PANEL_CONTRACT",
+  "boundary_flags_required": {
+    "database_written": false,
+    "memory_written": false,
+    "feishu_written": false,
+    "formal_export_created": false,
+    "classroom_student_runtime_connected": false,
+    "provider_called": false,
+    "frontend_runtime_modified": false,
+    "backend_runtime_modified": false,
+    "old_sealed_stage_modified": false,
+    "full_repo_blind_rename_performed": false,
+    "teacher_facing_jarvis_wording_introduced": false,
+    "teacher_facing_xiaobei_wording_introduced": false
+  },
+  "validation_requirements": [
+    "required files exist",
+    "stage identity matches",
+    "JSON contract is valid",
+    "checklist and result are valid JSON",
+    "hard boundaries remain false",
+    "no forbidden files are packaged",
+    "ZIP paths are relative and clean",
+    "manifest_minus_zip and zip_minus_manifest are empty",
+    "validator supports no-arg and --root"
+  ]
+}

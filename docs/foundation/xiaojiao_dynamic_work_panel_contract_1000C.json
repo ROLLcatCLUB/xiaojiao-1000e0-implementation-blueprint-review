@@ -1,0 +1,166 @@
+{
+  "package_code": "1000_XIAOJIAO_TEACHER_JARVIS_WORKBENCH_PLANNING_PACKAGE",
+  "source_handoff": [
+    "docs/handoff/xiaojiao_teacher_jarvis_workbench_1000A_execution_handoff_20260612.md",
+    "docs/handoff/teacher_jarvis_workbench_planning_notes_1000_20260612.md"
+  ],
+  "product_identity": {
+    "zh": "小教智能体",
+    "en": "Xiaojiao Agent",
+    "definition": "统一小教智能体根据工作状态，主导渐进式工作台，把教师的工作对象以动态工作面板呈现出来，并通过工作动作持续推进教师完成课前专业工作。",
+    "teacher_facing_jarvis_allowed": false
+  },
+  "naming_policy": {
+    "new_teacher_facing_copy_uses": "小教",
+    "new_system_concepts_use": "Xiaojiao",
+    "legacy_internal_namespace": true,
+    "blind_full_repository_rename_allowed": false,
+    "allowlist_based_rename_only": true
+  },
+  "hard_boundaries": {
+    "runtime_change_allowed": false,
+    "ui_implementation_allowed": false,
+    "provider_call_allowed": false,
+    "database_write_allowed": false,
+    "memory_write_allowed": false,
+    "feishu_write_allowed": false,
+    "formal_export_allowed": false,
+    "classroom_student_runtime_allowed": false,
+    "full_repo_blind_rename_allowed": false
+  },
+  "weekly_work_graph_relation": {
+    "semester_weekly_calendar": "progress supporting table; answers which week teaches what",
+    "weekly_work_graph": "higher-level weekly work panel; organizes what to teach, prepare, evaluate, adjust, submit, handle, and carry over this week",
+    "weekly_work_graph_replaces_semester_weekly_calendar": false
+  },
+  "main_document_policy": {
+    "teaching_work_plan": "role-scoped main document",
+    "supporting_artifacts": [
+      "unit_lesson_allocation",
+      "semester_weekly_calendar",
+      "class_schedule_table",
+      "lesson_schedule_table"
+    ],
+    "supporting_artifacts_replace_main_document": false
+  },
+  "stage_code": "1000C_DYNAMIC_WORK_PANEL_CONTRACT",
+  "stage_name": "Dynamic Work Panel Contract",
+  "stage_type": "dynamic_panel_contract_only",
+  "final_status_target": "XIAOJIAO_DYNAMIC_WORK_PANEL_CONTRACT_PASS",
+  "purpose": "Define Dynamic Work Panel as a renderer contract and state-derived view envelope, not a fixed card component.",
+  "stage_sections": {
+    "panel_schema": {
+      "fields": [
+        "panel_id",
+        "panel_type",
+        "artifact_type",
+        "title",
+        "status",
+        "mode",
+        "priority",
+        "context",
+        "visible_fields",
+        "hidden_fields",
+        "missing_info",
+        "available_actions",
+        "linked_objects",
+        "layout_region",
+        "render_intent",
+        "teacher_safe_summary",
+        "audit_trace_ref"
+      ],
+      "fixed_card_component": false,
+      "raw_ai_reply_container": false
+    },
+    "panel_modes": [
+      "empty",
+      "intake",
+      "draft",
+      "working",
+      "review",
+      "blocked",
+      "ready_to_confirm"
+    ],
+    "visible_hidden_field_rules": [
+      "visible fields must be teacher-actionable or reviewable",
+      "hidden fields may carry audit trace references and internal derivation state",
+      "missing information must stay explicit until resolved",
+      "provider prompts and raw responses must not be visible teacher content"
+    ],
+    "layout_rules": {
+      "primary": "current work object and next safe action",
+      "supporting": "linked artifacts and progress context",
+      "assistant_surface": "suggestion or confirmation only when useful",
+      "chat_history_default": "not primary workspace"
+    },
+    "display_rules": [
+      "derive panel display from Work State through Work View Composer",
+      "show status, gaps, linked artifacts, and available actions",
+      "avoid engineering terms in teacher-facing primary experience",
+      "preserve semester weekly calendar as supporting artifact when weekly work graph is visible"
+    ]
+  },
+  "validation_focus": [
+    "panel schema has stable envelope",
+    "visible fields and actions are dynamic",
+    "not a fixed card",
+    "not raw AI reply display",
+    "chat history does not dominate default workspace"
+  ],
+  "prohibited_patterns": [
+    "implement real UI",
+    "modify real frontend pages",
+    "connect runtime",
+    "call provider or model",
+    "write database",
+    "write memory",
+    "write Feishu",
+    "create formal export",
+    "connect classroom student runtime",
+    "modify old sealed stages",
+    "blind full-repository rename",
+    "globally replace Xiaobei with Xiaojiao",
+    "put Jarvis into teacher-facing product copy",
+    "make Dynamic Work Panel a fixed dead card",
+    "split Xiaojiao into multiple business agents",
+    "let chat history dominate the workspace",
+    "replace semester weekly calendar with weekly work graph",
+    "let supporting tables replace the teaching work plan main document",
+    "hardcode art-teacher logic as a system-wide rule",
+    "turn sample room into classroom execution runtime",
+    "expose audit flags in teacher-facing primary copy",
+    "skip validator before next stage"
+  ],
+  "future_milestones": [
+    "1000B_EDUCATION_PRE_CLASS_WORK_SAMPLE_ROOM_BUSINESS_STRUCTURE",
+    "1000C_DYNAMIC_WORK_PANEL_CONTRACT",
+    "1000D_AGENT_ACTION_POLICY_AND_WORK_STATE_CONTRACT",
+    "1000E_ART_TEACHER_PRE_CLASS_WORKBENCH_PILOT"
+  ],
+  "next_stage": "1000D_AGENT_ACTION_POLICY_AND_WORK_STATE_CONTRACT",
+  "boundary_flags_required": {
+    "database_written": false,
+    "memory_written": false,
+    "feishu_written": false,
+    "formal_export_created": false,
+    "classroom_student_runtime_connected": false,
+    "provider_called": false,
+    "frontend_runtime_modified": false,
+    "backend_runtime_modified": false,
+    "old_sealed_stage_modified": false,
+    "full_repo_blind_rename_performed": false,
+    "teacher_facing_jarvis_wording_introduced": false,
+    "teacher_facing_xiaobei_wording_introduced": false
+  },
+  "validation_requirements": [
+    "required files exist",
+    "stage identity matches",
+    "JSON contract is valid",
+    "checklist and result are valid JSON",
+    "hard boundaries remain false",
+    "no forbidden files are packaged",
+    "ZIP paths are relative and clean",
+    "manifest_minus_zip and zip_minus_manifest are empty",
+    "validator supports no-arg and --root"
+  ]
+}

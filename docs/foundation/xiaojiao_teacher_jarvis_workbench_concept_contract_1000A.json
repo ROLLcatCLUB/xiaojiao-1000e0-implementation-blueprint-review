@@ -1,0 +1,411 @@
+{
+  "stage_code": "1000A_XIAOJIAO_TEACHER_JARVIS_WORKBENCH_CONCEPT_CONTRACT",
+  "stage_name": "Xiaojiao Teacher Jarvis Workbench Concept Contract",
+  "stage_type": "concept_contract_only",
+  "final_status_target": "XIAOJIAO_TEACHER_JARVIS_WORKBENCH_CONCEPT_CONTRACT_PASS",
+  "source_handoff": [
+    "docs/handoff/xiaojiao_teacher_jarvis_workbench_1000A_execution_handoff_20260612.md",
+    "docs/handoff/teacher_jarvis_workbench_planning_notes_1000_20260612.md"
+  ],
+  "source_handoffs": [
+    "docs/handoff/xiaojiao_teacher_jarvis_workbench_1000A_execution_handoff_20260612.md",
+    "docs/handoff/teacher_jarvis_workbench_planning_notes_1000_20260612.md"
+  ],
+  "product_identity": {
+    "zh": "小教智能体",
+    "en": "Xiaojiao Agent",
+    "definition": "统一小教智能体根据工作状态，主导渐进式工作台，把教师的工作对象以动态工作面板呈现出来，并通过工作动作持续推进教师完成课前专业工作。",
+    "teacher_facing_jarvis_allowed": false
+  },
+  "naming_policy": {
+    "new_product_name_zh": "小教智能体",
+    "new_product_name_en": "Xiaojiao Agent",
+    "new_teacher_facing_copy_uses": "小教",
+    "new_system_concepts_use": "Xiaojiao",
+    "blind_full_repository_rename_allowed": false,
+    "allowlist_based_rename_only": true
+  },
+  "legacy_namespace_policy": {
+    "legacy_names": [
+      "小备",
+      "Xiaobei",
+      "xiaobei",
+      "xiaobei_agent"
+    ],
+    "legacy_internal_namespace": true,
+    "force_rename_existing_repo": false,
+    "force_rename_old_stage_files": false,
+    "force_rename_old_validator_markers": false,
+    "force_rename_old_audit_packages": false,
+    "force_rename_existing_import_paths": false
+  },
+  "internal_metaphor_policy": {
+    "metaphor": "Jarvis",
+    "internal_planning_metaphor_only": true,
+    "teacher_facing_copy_allowed": false,
+    "deferred_to_branding_stage": true
+  },
+  "core_concepts": [
+    {
+      "id": "unified_xiaojiao_agent",
+      "en": "Unified Xiaojiao Agent",
+      "zh": "统一小教智能体",
+      "definition": "The single teacher work agent that understands intent, identifies active work, maintains Work State, coordinates panels, and selects Work Actions."
+    },
+    {
+      "id": "agent_led_progressive_workspace",
+      "en": "Agent-led Progressive Workspace",
+      "zh": "小教主导的渐进式工作台",
+      "definition": "A workspace that unfolds from the teacher task and Work State instead of exposing fixed module menus first."
+    },
+    {
+      "id": "dynamic_work_panel",
+      "en": "Dynamic Work Panel",
+      "zh": "动态工作面板",
+      "definition": "A task-aware view container whose fields and actions change by role, scope, task, missing information, artifacts, and review readiness."
+    },
+    {
+      "id": "work_object",
+      "en": "Work Object",
+      "zh": "工作对象",
+      "definition": "The business object the teacher is actually working on, such as a teaching work plan, weekly work graph, rubric, or classroom preparation package."
+    },
+    {
+      "id": "work_action",
+      "en": "Work Action",
+      "zh": "工作动作",
+      "definition": "An operation applied to a Work Object, such as CLARIFY, GENERATE, MODIFY, DERIVE, SYNC, REVIEW, CONFIRM, BLOCK, PREPARE_EXPORT, or RECORD."
+    },
+    {
+      "id": "work_state",
+      "en": "Work State",
+      "zh": "工作状态",
+      "definition": "The structured state that tracks goals, active objects, known fields, missing fields, generated candidates, work items, linked artifacts, and next actions."
+    }
+  ],
+  "supporting_concepts": [
+    {
+      "id": "work_view_composer",
+      "en": "Work View Composer",
+      "zh": "工作视图组合器",
+      "definition": "The layer that converts Work State into panel layout, panel priority, visible fields, available actions, and assistant surface placement."
+    },
+    {
+      "id": "assistant_surface",
+      "en": "Assistant Surface",
+      "zh": "小教交互表层",
+      "accepted_zh_aliases": [
+        "小教表层",
+        "助手表层",
+        "小教交互表层",
+        "助手交互表层"
+      ],
+      "definition": "The lightweight interaction layer for Xiaojiao suggestions, confirmations, mini dialogue, and work records."
+    }
+  ],
+  "concept_relationship": [
+    "Unified Xiaojiao Agent",
+    "leads Agent-led Progressive Workspace",
+    "organizes Dynamic Work Panel",
+    "displays Work Object",
+    "advances through Work Action",
+    "updates Work State"
+  ],
+  "assistant_surface_states": [
+    {
+      "state": "collapsed",
+      "definition": "Only the Xiaojiao entry is visible."
+    },
+    {
+      "state": "suggestion_bar",
+      "definition": "A compact current suggestion or next action is visible."
+    },
+    {
+      "state": "mini_chat_overlay",
+      "definition": "A temporary compact dialogue surface is visible for clarification or confirmation."
+    },
+    {
+      "state": "work_record_drawer",
+      "definition": "History and work trace are available without occupying the default main workspace."
+    }
+  ],
+  "dynamic_work_panel_contract": {
+    "not_fixed_card": true,
+    "stable_envelope_fields": [
+      "panel_id",
+      "panel_type",
+      "artifact_type",
+      "title",
+      "status",
+      "mode",
+      "priority",
+      "context",
+      "visible_fields",
+      "hidden_fields",
+      "missing_info",
+      "available_actions",
+      "linked_objects",
+      "layout_region"
+    ],
+    "display_depends_on": [
+      "teacher_role",
+      "work_scope",
+      "current_task",
+      "known_fields",
+      "missing_info",
+      "generated_candidates",
+      "linked_artifacts",
+      "review_readiness"
+    ],
+    "raw_ai_text_as_panel_body_allowed": false
+  },
+  "panel_modes": [
+    "empty",
+    "intake",
+    "draft",
+    "working",
+    "review"
+  ],
+  "work_object_contract": {
+    "minimum_fields": [
+      "object_id",
+      "object_type",
+      "display_name",
+      "domain",
+      "work_scope",
+      "status",
+      "field_schema_ref",
+      "linked_objects",
+      "source_objects",
+      "available_actions",
+      "missing_info",
+      "last_updated",
+      "owner_role"
+    ]
+  },
+  "work_action_contract": {
+    "action_types": [
+      "CLARIFY",
+      "GENERATE",
+      "MODIFY",
+      "DERIVE",
+      "SYNC",
+      "REVIEW",
+      "CONFIRM",
+      "BLOCK",
+      "PREPARE_EXPORT",
+      "RECORD"
+    ],
+    "minimum_fields": [
+      "action_id",
+      "action_type",
+      "source_object",
+      "target_object",
+      "required_fields",
+      "optional_fields",
+      "side_effect_level",
+      "requires_confirmation",
+      "teacher_facing_label",
+      "result_state_patch"
+    ]
+  },
+  "work_state_contract": {
+    "minimum_fields": [
+      "current_goal",
+      "active_domain",
+      "active_work_scope",
+      "active_work_objects",
+      "known_fields",
+      "missing_fields",
+      "pending_questions",
+      "pending_confirmations",
+      "generated_candidates",
+      "work_items",
+      "linked_artifacts",
+      "next_recommended_actions",
+      "last_action",
+      "assistant_surface_state",
+      "renderer_state",
+      "boundary_flags"
+    ],
+    "turns_are_incremental_updates": true
+  },
+  "workbench_positioning": {
+    "teaching_planning_evolves_to": "teacher daily workbench / teacher home",
+    "current_focus": "pre-class professional work",
+    "later_submodules": [
+      "classroom_design",
+      "classroom_execution",
+      "evaluation"
+    ],
+    "classroom_student_runtime_connected": false
+  },
+  "pre_class_work_chain": [
+    "teacher role profile",
+    "semester teaching work plan",
+    "unit lesson allocation",
+    "semester weekly calendar",
+    "weekly work graph",
+    "today work items",
+    "lesson design",
+    "learning task sheet",
+    "evaluation rubric",
+    "classroom preparation package"
+  ],
+  "weekly_work_graph_definition": {
+    "id": "weekly_work_graph",
+    "zh": "周工作图谱",
+    "replaces_semester_weekly_calendar": false,
+    "semester_weekly_calendar_role": "progress supporting table; answers which week teaches what",
+    "weekly_work_graph_role": "higher-level weekly work panel; organizes what to teach, prepare, evaluate, adjust, submit, handle, and carry over this week",
+    "derived_from": [
+      "semester teaching work plan",
+      "semester_weekly_calendar",
+      "timetable",
+      "activity conflicts",
+      "evaluation tasks",
+      "resource preparation",
+      "pending work items"
+    ],
+    "fields": [
+      "week_no",
+      "date_range",
+      "teaching_focus",
+      "lesson_tasks",
+      "prep_tasks",
+      "evaluation_tasks",
+      "student_followup_tasks",
+      "resource_tasks",
+      "activity_conflicts",
+      "adjustment_notes",
+      "urgent_issues",
+      "pending_plans",
+      "completed_items",
+      "next_week_carryover"
+    ]
+  },
+  "today_work_item_definition": {
+    "types": [
+      "prepare_lesson",
+      "design_learning_task",
+      "prepare_resource",
+      "evaluate_student_work",
+      "adjust_plan",
+      "submit_material",
+      "review_progress",
+      "handle_issue",
+      "plan_activity",
+      "generate_document",
+      "reflect_and_summarize"
+    ],
+    "minimum_fields": [
+      "work_item_id",
+      "type",
+      "title",
+      "source",
+      "related_work_objects",
+      "related_classes",
+      "due_date",
+      "priority",
+      "status",
+      "next_action",
+      "completion_condition"
+    ]
+  },
+  "quickclass_boundary": {
+    "quickclass_focus": "classroom execution and learning analytics",
+    "xiaojiao_current_focus": "pre-class teacher professional work",
+    "quickclass_like_classroom_execution_system_allowed_in_1000A": false,
+    "student_side_runtime_allowed_in_1000A": false
+  },
+  "prohibited_patterns": [
+    "left-side large chat box as the primary workspace",
+    "traditional module-menu stacking as the default product shape",
+    "multiple business-specific Xiaojiao agents",
+    "one assistant per page",
+    "fixed dead cards",
+    "raw AI reply text used as panel content without Work State mapping",
+    "chat history occupying the default main workspace",
+    "classroom student-side runtime connection",
+    "provider/model call",
+    "database write",
+    "memory write",
+    "Feishu write",
+    "formal export",
+    "blind full-repository rename",
+    "global replacement of 小备 with 小教",
+    "teacher-facing use of Jarvis",
+    "using 周工作图谱 as a replacement name for 学期周历表",
+    "treating supporting artifacts as the teaching work plan main document",
+    "implementing real UI in 1000A",
+    "modifying old sealed stages",
+    "hardcoding primary art teacher logic as system-wide logic",
+    "exposing engineering words such as dry-run, fixture, validator, stage, or boundary flags in teacher-facing primary copy",
+    "making 1000A a runtime behavior change",
+    "executing 0998N inside this milestone"
+  ],
+  "open_questions_deferred": {
+    "resolved_by_1000A": [
+      "product-shape boundary",
+      "Xiaojiao naming boundary",
+      "Jarvis as internal metaphor only",
+      "weekly work graph does not replace semester weekly calendar"
+    ],
+    "deferred_to": [
+      "1000B",
+      "1000C"
+    ],
+    "examples": [
+      "final teacher-facing name for broader workbench entry",
+      "final UI label for Dynamic Work Panel",
+      "whether 教学规划 is renamed in UI or reinterpreted internally first",
+      "exact display language for weekly work graph in teacher-facing UI"
+    ]
+  },
+  "future_milestones": [
+    "1000B_EDUCATION_PRE_CLASS_WORK_SAMPLE_ROOM_BUSINESS_STRUCTURE",
+    "1000C_DYNAMIC_WORK_PANEL_CONTRACT",
+    "1000D_AGENT_ACTION_POLICY_AND_WORK_STATE_CONTRACT",
+    "1000E_ART_TEACHER_PRE_CLASS_WORKBENCH_PILOT"
+  ],
+  "boundary_flags_required": {
+    "runtime_change_allowed": false,
+    "ui_implementation_allowed": false,
+    "provider_call_allowed": false,
+    "database_write_allowed": false,
+    "memory_write_allowed": false,
+    "feishu_write_allowed": false,
+    "formal_export_allowed": false,
+    "classroom_student_runtime_allowed": false,
+    "full_repo_blind_rename_allowed": false
+  },
+  "validation_requirements": [
+    "required files exist",
+    "stage identity is consistent",
+    "final status target is correct",
+    "stage type is concept_contract_only",
+    "runtime/UI/provider/database/memory/Feishu/export/student-runtime/blind-rename boundaries are false",
+    "six primary concepts exist in English and Chinese",
+    "two support concepts exist in English and Chinese",
+    "assistant surface states exist",
+    "dynamic work panel envelope and modes exist",
+    "pre-class work chain exists",
+    "weekly work graph does not replace semester weekly calendar",
+    "today work item definition exists",
+    "QuickClass boundary exists",
+    "prohibited patterns count is at least 20",
+    "future milestones include 1000B/1000C/1000D/1000E",
+    "result boundary flags are safe",
+    "manifest and ZIP are aligned",
+    "no forbidden files or absolute paths are in ZIP"
+  ],
+  "runtime_change_allowed": false,
+  "ui_implementation_allowed": false,
+  "provider_call_allowed": false,
+  "database_write_allowed": false,
+  "memory_write_allowed": false,
+  "feishu_write_allowed": false,
+  "formal_export_allowed": false,
+  "classroom_student_runtime_allowed": false,
+  "full_repo_blind_rename_allowed": false
+}

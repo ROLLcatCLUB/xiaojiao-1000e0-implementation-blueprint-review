@@ -1,0 +1,136 @@
+{
+  "stage_code": "1000E0_ART_TEACHER_PRE_CLASS_WORKBENCH_IMPLEMENTATION_BLUEPRINT",
+  "final_status_target": "XIAOJIAO_ART_TEACHER_PRE_CLASS_WORKBENCH_IMPLEMENTATION_BLUEPRINT_PASS",
+  "items": [
+    {
+      "id": "stage_identity",
+      "label": "stage identity",
+      "pass": true
+    },
+    {
+      "id": "source_files",
+      "label": "source files",
+      "pass": true
+    },
+    {
+      "id": "review_caveat_captured",
+      "label": "review caveat captured",
+      "pass": true
+    },
+    {
+      "id": "hard_boundaries",
+      "label": "hard boundaries",
+      "pass": true
+    },
+    {
+      "id": "artifact_schemas",
+      "label": "artifact schemas",
+      "pass": true
+    },
+    {
+      "id": "teaching_work_plan_main_document_schema",
+      "label": "teaching work plan main document schema",
+      "pass": true
+    },
+    {
+      "id": "weekly_work_graph_relation",
+      "label": "weekly work graph relation",
+      "pass": true
+    },
+    {
+      "id": "today_work_items_schema",
+      "label": "today work items schema",
+      "pass": true
+    },
+    {
+      "id": "classroom_preparation_package_schema",
+      "label": "classroom preparation package schema",
+      "pass": true
+    },
+    {
+      "id": "three_core_panel_examples",
+      "label": "three core panel examples",
+      "pass": true
+    },
+    {
+      "id": "panel_mode_examples",
+      "label": "panel mode examples",
+      "pass": true
+    },
+    {
+      "id": "three_required_input_scenarios",
+      "label": "three required input scenarios",
+      "pass": true
+    },
+    {
+      "id": "state_transition_table",
+      "label": "state transition table",
+      "pass": true
+    },
+    {
+      "id": "mode_change_rules",
+      "label": "mode change rules",
+      "pass": true
+    },
+    {
+      "id": "available_action_rules",
+      "label": "available action rules",
+      "pass": true
+    },
+    {
+      "id": "single_Xiaojiao_Agent_policy",
+      "label": "single Xiaojiao Agent policy",
+      "pass": true
+    },
+    {
+      "id": "Jarvis_internal_metaphor_only",
+      "label": "Jarvis internal metaphor only",
+      "pass": true
+    },
+    {
+      "id": "no_UI_implementation",
+      "label": "no UI implementation",
+      "pass": true
+    },
+    {
+      "id": "no_runtime_connection",
+      "label": "no runtime connection",
+      "pass": true
+    },
+    {
+      "id": "no_provider_model_call",
+      "label": "no provider/model call",
+      "pass": true
+    },
+    {
+      "id": "no_database_write",
+      "label": "no database write",
+      "pass": true
+    },
+    {
+      "id": "no_memory_write",
+      "label": "no memory write",
+      "pass": true
+    },
+    {
+      "id": "no_Feishu_write",
+      "label": "no Feishu write",
+      "pass": true
+    },
+    {
+      "id": "no_formal_export",
+      "label": "no formal export",
+      "pass": true
+    },
+    {
+      "id": "no_classroom_student_runtime",
+      "label": "no classroom student runtime",
+      "pass": true
+    },
+    {
+      "id": "manifest___ZIP_alignment",
+      "label": "manifest / ZIP alignment",
+      "pass": true
+    }
+  ]
+}
